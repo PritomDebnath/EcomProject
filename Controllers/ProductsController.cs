@@ -34,5 +34,14 @@ namespace API.Controllers
 
             return await _context.Products.FindAsync(Id);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<List<Product>>> AddProduct(Product item)
+        {
+            _context.Products.Add(item);
+            await _context.SaveChangesAsync();
+            
+            return await _context.Products.ToListAsync();
+        }
     }
 }
